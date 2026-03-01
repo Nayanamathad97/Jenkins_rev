@@ -1,0 +1,15 @@
+pipeline
+{ agent any
+    stages
+    {
+        stage('STAGE1')
+        {
+            steps
+            {
+                echo "stage1"
+                pwd
+
+            }
+        }
+    }
+}
