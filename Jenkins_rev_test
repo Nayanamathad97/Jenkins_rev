@@ -1,15 +1,25 @@
 pipeline
 { agent any
+  parameters {
+    string(name: "NAME", defaultValue: '', description: 'tell your name')
+    booleanParam(name: "SKIP_TEST", defaultValue: 'false', description: 'skiptest to run direct deploy')
+    choice(name: "BRANCH", choices: ['test','prod','stage'] '', description: 'choose environment to deploy')
+  }
     stages
     {
         stage('STAGE1')
         {
             steps
             {
-                echo "stage1"
-                sh '''pwd
-                ls -ltr'''
+                echo "NAME:${params.NAME}"
+                echo "SKIP_TEST:${params.SKIP_TEST}"
+                echo "NAME:${params.BRANCH}"
 
+                sh '''
+                echo "NAME: ${NAME}"
+                echo "SKIP_TEST: ${SKIP_TEST}"
+                echo "BRANCH: ${BRANCH}"
+                '''                
             }
         }
     }
